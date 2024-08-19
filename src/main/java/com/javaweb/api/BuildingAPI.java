@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,10 +41,9 @@ public class BuildingAPI {
 	
 	@GetMapping("/building")
 	public List<BuildingDTO> getBuilding(
-				@RequestParam(value="name", required = false) String name,
-				@RequestParam(value="districtId", required = false) Long districtId,
+				@RequestParam Map<String, Object> params,
 				@RequestParam(value = "typeCode", required = false) List<String> typeCode
 			) {
-		return buildingService.findAll(name, districtId);
+		return buildingService.findAll(params, typeCode);
 	}
 }

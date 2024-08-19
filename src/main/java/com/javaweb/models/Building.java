@@ -1,8 +1,12 @@
 package com.javaweb.models;
 
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Building {
-	private String name;
-	private Integer floor;
+	String name;
+	Integer floor;
 	public String getName() {
 		return name;
 	}
