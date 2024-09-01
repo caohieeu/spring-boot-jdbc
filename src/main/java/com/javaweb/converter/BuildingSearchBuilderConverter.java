@@ -29,7 +29,6 @@ public class BuildingSearchBuilderConverter {
 				.setStaffId(MapUtil.getObject(params, "staffId", Long.class))
 				.build();
 		
-		System.out.println(buildingSearchBuilder.getName());
 		return buildingSearchBuilder;
 	}
 }

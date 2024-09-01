@@ -15,33 +15,33 @@ import lombok.experimental.FieldDefaults;
 
 @Repository
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DistrictRepositoryImpl implements DisctrictRepository{
+public class DistrictRepositoryImpl {
 
-	@Autowired
-	MyConnection conn;
-	
-	@Override
-	public DistrictEntity findNameById(Long id) {
-		
-		DistrictEntity districtEntity = new DistrictEntity();
-		try {
-			conn.open();
-			
-			StringBuilder query = new StringBuilder("SELECT * FROM district WHERE id=" + id);
-			
-			ResultSet rs = conn.executeQuery(query.toString());
-			
-			while(rs.next()) {
-				districtEntity.setId(rs.getLong("id"));
-				districtEntity.setName(rs.getString("name"));
-				districtEntity.setCode(rs.getString("code"));
-			}
-		} catch (Exception e) { 
-			e.printStackTrace();
-		}
-		
-		conn.close();
-		return districtEntity;
-	}
+//	@Autowired
+//	MyConnection conn;
+//	
+//	@Override
+//	public DistrictEntity findNameById(Long id) {
+//		
+//		DistrictEntity districtEntity = new DistrictEntity();
+//		try {
+//			conn.open();
+//			
+//			StringBuilder query = new StringBuilder("SELECT * FROM district WHERE id=" + id);
+//			
+//			ResultSet rs = conn.executeQuery(query.toString());
+//			
+//			while(rs.next()) {
+//				districtEntity.setId(rs.getLong("id"));
+//				districtEntity.setName(rs.getString("name"));
+//				districtEntity.setCode(rs.getString("code"));
+//			}
+//		} catch (Exception e) { 
+//			e.printStackTrace();
+//		}
+//		
+//		conn.close();
+//		return districtEntity;
+//	}
 	
 }

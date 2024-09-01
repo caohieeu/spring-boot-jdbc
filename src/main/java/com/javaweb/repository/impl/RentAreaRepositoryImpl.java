@@ -16,36 +16,6 @@ import lombok.experimental.FieldDefaults;
 
 @Repository
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RentAreaRepositoryImpl implements RentAreaRepository{
-
-	@Autowired
-	MyConnection conn;
+public class RentAreaRepositoryImpl {
 	
-	@Override
-	public List<RentAreaEntity> findAreaByBuildingId(Long id) {
-
-		List<RentAreaEntity> listRentArea = new ArrayList<>();
-		try {
-			conn.open();
-			
-			StringBuilder query = new StringBuilder("SELECT * FROM rentarea r"
-					+ " WHERE r.building_id = " + id);
-			ResultSet rs = conn.executeQuery(query.toString());
-			
-			while(rs.next()) {
-				RentAreaEntity r = new RentAreaEntity();
-				r.setId(rs.getLong("id"));
-				r.setValue(rs.getDouble("value"));
-				r.setBuilding_id(rs.getLong("building_id"));
-				
-				listRentArea.add(r);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		conn.close();
-		return listRentArea;
-	}
-
 }
