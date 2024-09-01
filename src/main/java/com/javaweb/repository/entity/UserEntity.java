@@ -3,14 +3,7 @@ package com.javaweb.repository.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -38,8 +31,11 @@ public class UserEntity {
 	@Column(name = "email")
 	String email;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	List<UserRoleEntity> listUserRole = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_role", 
+			joinColumns = @JoinColumn(name = "user_id", nullable = false), 
+			inverseJoinColumns = @JoinColumn(name = "role_id", nullable = false))
+	List<RoleEntity> roles = new ArrayList<RoleEntity>();
 
 	public Long getId() {
 		return id;
@@ -89,12 +85,11 @@ public class UserEntity {
 		this.email = email;
 	}
 
-	public List<UserRoleEntity> getListUserRole() {
-		return listUserRole;
+	public List<RoleEntity> getRoles() {
+		return roles;
 	}
 
-	public void setListUserRole(List<UserRoleEntity> listUserRole) {
-		this.listUserRole = listUserRole;
+	public void setRoles(List<RoleEntity> roles) {
+		this.roles = roles;
 	}
-	
 }
